@@ -26,7 +26,7 @@ make_task_def(){
 				"memory": 200,
 				"cpu": 10
     	}
-		],
+		]
 	}'
 #	"volumes": [
 #		{
