@@ -43,7 +43,7 @@ make_task_def(){
         	"smartmat-client:smartmat-client"
       	]
     	}
-		]
+		],
 		"volumes": [
 			{
 				"name": "test",
