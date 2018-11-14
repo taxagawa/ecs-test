@@ -10,8 +10,7 @@ AWS_ECR_PROXY_REP_NAME=smartmat-nginx
 
 # Create Task Definition
 make_task_def(){
-	task_template='{
-		"containerDefinitions": [
+	task_template='[
 			{
 				"name": "smartmat-server",
 				"image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
@@ -26,16 +25,7 @@ make_task_def(){
 				"memory": 200,
 				"cpu": 10
     	}
-		],
-	"volumes": [
-		{
-			"name": "test",
-			"host": {
-				"sourcePath": "/tmp"
-			}
-		}
-	]
-}'
+		]'
 
 	task_def=$(printf "$task_template" $AWS_ACCOUNT_ID ${AWS_DEFAULT_REGION} ${AWS_ECR_REP_NAME} $CIRCLE_SHA1 $AWS_ACCOUNT_ID ${AWS_DEFAULT_REGION} ${AWS_ECR_REP_NAME} $CIRCLE_SHA1)
   echo "$task_def"
