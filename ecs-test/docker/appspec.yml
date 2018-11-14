@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: dummy.txt
+    destination: /tmp
+hooks:
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 180
+      runas: root
+  BeforeInstall:
+    - location: scripts/before.sh
+      timeout: 180
+      runas: root
+  ApplicationStart:
+    - location: scripts/start.sh
+      timeout: 600
+      runas: root

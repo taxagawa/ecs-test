@@ -1,0 +1,50 @@
+version: '2'
+services:
+  proxy:
+    build: ./proxy
+    tty: true
+    image: nginx_proxy
+    container_name: proxy_container
+#    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - "80:80"
+      - "443:443"
+#    networks:
+#      - default
+#      - proxy_nw
+    depends_on:
+      - "client"
+      - "server"
+#    command: ["wait-for-it.sh", "smartmat-client:80", "--", "./wait-for-it.sh", "smartmat-server:80"]
+
+  client:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/smartmat.jp:${CIRCLE_SHA1}
+    container_name: smartmat-client
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+#    networks:
+#      - proxy_nw
+
+  server:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/smartmat.jp:${CIRCLE_SHA1}
+    container_name: smartmat-server
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+#    networks:
+#      - proxy_nw
+#networks:
+#  proxy_nw:
+#    external: true
