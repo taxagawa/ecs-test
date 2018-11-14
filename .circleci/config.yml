@@ -24,8 +24,8 @@ jobs:
           command: |
             docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/smartmat.jp:$CIRCLE_SHA1 .
       - run: *install_awscli
-      - run: chmod +x docker/deploy.sh
-      - run: sh docker/deploy.sh
+      - run: chmod +x ./deploy.sh
+      - run: sh ./deploy.sh
 
 
 workflows:
