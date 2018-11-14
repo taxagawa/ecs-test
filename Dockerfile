@@ -36,8 +36,6 @@ ADD nginx/*.smartmat.jp.conf /etc/nginx/conf.d/
 
 EXPOSE 80
 
-VOLUME /root/smartshopping/go/smartmat-system-api
-
 ENTRYPOINT /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
 #        && bash /root/smartshopping/go/smartmat-system-api/scripts/stop.sh \
 #        && bash /root/smartshopping/go/smartmat-system-api/scripts/start.sh

@@ -17,6 +17,12 @@ make_task_def(){
 				"essential": true,
 				"memory": 200,
 				"cpu": 10
+				"mountPoints": [
+						{
+								"sourceVolume": "test",
+								"containerPath": "/root/smartshopping/go/smartmat-system-api"
+						}
+				]
 			},
     	{
       	"name": "smartmat-client",
@@ -24,6 +30,12 @@ make_task_def(){
 				"essential": true,
 				"memory": 200,
 				"cpu": 10
+				"mountPoints": [
+						{
+								"sourceVolume": "test",
+								"containerPath": "/root/smartshopping/go/smartmat-system-api"
+						}
+				]
     	}
 		]'
 
