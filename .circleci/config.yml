@@ -5,7 +5,7 @@ references:
         apk --update add curl python jq bash
         curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
         python get-pip.py
-        pip install awscli
+        pip install awscli --upgrade
         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile circleci-ecs
         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile circleci-ecs
     defaults: &defaults
