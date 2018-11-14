@@ -36,4 +36,4 @@ workflows:
       - build:
           filters:
             branches:
-              only: circleci-codedeploy
+              only: master
