@@ -31,6 +31,20 @@ make_task_def(){
   echo "$task_def"
 }
 
+make_volume_def(){
+	volume_template='[
+			{
+				"name": "test",
+				"host": {
+					"sourcePath": "/tmp"
+				}
+			}
+	]'
+
+	volume_def=$(printf "$volume_template")
+	echo "$volume_def"
+}
+
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"
 
@@ -43,6 +57,7 @@ configure_aws_cli(){
 deploy_cluster() {
 
     make_task_def
+		make_volume_def
     register_definition
     if [[ $(aws ecs update-service --cluster ${AWS_ECS_CLUSTER_NAME} --service ${AWS_ECS_SERVICE_NAME} --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
@@ -76,7 +91,7 @@ push_ecr_image(){
 
 register_definition() {
 
-    if revision=$(aws ecs register-task-definition --container-definitions "$task_def" --family ${AWS_ECS_TASKDEF_NAME} | $JQ '.taskDefinition.taskDefinitionArn'); then
+    if revision=$(aws ecs register-task-definition --container-definitions "$task_def" --family ${AWS_ECS_TASKDEF_NAME} --volumes "$volume_def" | $JQ '.taskDefinition.taskDefinitionArn'); then
         echo "Revision: $revision"
     else
         echo "Failed to register task definition"
