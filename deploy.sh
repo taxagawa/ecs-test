@@ -27,15 +27,16 @@ make_task_def(){
 				"cpu": 10
     	}
 		],
-	"volumes": [
-		{
-			"name": "test",
-			"host": {
-				"sourcePath": "/tmp"
-			}
-		}
-	]
-}'
+	}'
+#	"volumes": [
+#		{
+# 			"name": "test",
+# 			"host": {
+# 				"sourcePath": "/tmp"
+# 			}
+# 		}
+# 	]
+# }'
 
 	task_def=$(printf "$task_template" $AWS_ACCOUNT_ID ${AWS_DEFAULT_REGION} ${AWS_ECR_REP_NAME} $CIRCLE_SHA1 $AWS_ACCOUNT_ID ${AWS_DEFAULT_REGION} ${AWS_ECR_REP_NAME} $CIRCLE_SHA1)
   echo "$task_def"
