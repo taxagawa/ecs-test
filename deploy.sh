@@ -16,7 +16,7 @@ make_task_def(){
 				"image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
 				"essential": true,
 				"memory": 200,
-				"cpu": 10
+				"cpu": 10,
 				"mountPoints": [
 						{
 								"sourceVolume": "test",
@@ -29,7 +29,7 @@ make_task_def(){
       	"image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
 				"essential": true,
 				"memory": 200,
-				"cpu": 10
+				"cpu": 10,
 				"mountPoints": [
 						{
 								"sourceVolume": "test",
